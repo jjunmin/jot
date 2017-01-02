@@ -8,9 +8,8 @@
 
 #import "JotTextView.h"
 
-@interface JotTextView ()
+@interface JotTextView () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIView *textEditingContainer;
 @property (nonatomic, strong) UITextView *textEditingView;
 @property (nonatomic, assign) CGAffineTransform referenceRotateTransform;
@@ -20,6 +19,13 @@
 @property (nonatomic, strong) UIRotationGestureRecognizer *activeRotationRecognizer;
 @property (nonatomic, assign) CGFloat scale;
 @property (nonatomic, assign) CGRect labelFrame;
+
+
+@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
+@property (nonatomic, strong) UIRotationGestureRecognizer *rotationRecognizer;
+@property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+
 
 @end
 
@@ -55,7 +61,30 @@
         _referenceRotateTransform = CGAffineTransformIdentity;
         _currentRotateTransform = CGAffineTransformIdentity;
         
-        self.userInteractionEnabled = NO;
+        self.userInteractionEnabled = YES;
+        self.textLabel.userInteractionEnabled = YES;
+        
+        
+        
+        _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesturee:)];
+        self.pinchRecognizer.delegate = self;
+        
+        _rotationRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesturee:)];
+        self.rotationRecognizer.delegate = self;
+        
+        _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesturee:)];
+        self.panRecognizer.delegate = self;
+        
+        _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesturee:)];
+        self.tapRecognizer.delegate = self;
+        
+        
+        
+        [self.textLabel addGestureRecognizer:self.tapRecognizer];
+        [self.textLabel addGestureRecognizer:self.panRecognizer];
+        [self.textLabel addGestureRecognizer:self.rotationRecognizer];
+        [self.textLabel addGestureRecognizer:self.pinchRecognizer];
+
     }
     
     return self;
@@ -250,6 +279,27 @@
     }
 }
 
+
+#pragma mark - Gestures
+
+- (void)handleTapGesturee:(UIGestureRecognizer *)recognizer
+{
+    //여기서 택스트에딧 띄우기. 외부에서 탭할때는 새로 입력 열기
+}
+
+- (void)handlePanGesturee:(UIGestureRecognizer *)recognizer
+{
+    [self handlePanGesture:recognizer];
+}
+
+- (void)handlePinchOrRotateGesturee:(UIGestureRecognizer *)recognizer
+{
+    [self handlePinchOrRotateGesture:recognizer];
+}
+
+
+
+
 - (void)handlePinchOrRotateGesture:(UIGestureRecognizer *)recognizer
 {
     switch (recognizer.state) {
@@ -316,6 +366,28 @@
     CGFloat scale = [(UIPinchGestureRecognizer *)recognizer scale];
     return CGAffineTransformScale(transform, scale, scale);
 }
+
+
+
+
+#pragma mark - UIGestureRecognizer Delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        return YES;
+    }
+    return NO;
+}
+
+
+
+
 
 #pragma mark - Image Rendering
 

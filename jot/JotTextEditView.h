@@ -73,6 +73,7 @@
  *  @note Set textAlignment in JotViewController to control this property.
  */
 @property (nonatomic, assign) NSTextAlignment textAlignment;
+@property (nonatomic, strong) UITextView *textView;
 
 /**
  *  The view insets of the text displayed in the JotTextEditView. By default,

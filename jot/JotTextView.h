@@ -32,6 +32,8 @@
  */
 @property (nonatomic, strong) UIColor *textColor;
 
+@property (nonatomic, strong) UILabel *textLabel;
+
 /**
  *  The font of the text displayed in the JotTextView.
  *

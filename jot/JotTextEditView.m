@@ -11,7 +11,6 @@
 
 @interface JotTextEditView () <UITextViewDelegate>
 
-@property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIView *textContainer;
 @property (nonatomic, strong) CAGradientLayer *gradientMask;
 @property (nonatomic, strong) CAGradientLayer *topGradient;
@@ -230,6 +229,9 @@
 {
     if ([text isEqualToString: @"\n"]) {
         self.isEditing = NO;
+        NSLog(@"%@", self.textString);
+        // 여기서 함수 부르기, 
+        
         return NO;
     }
     

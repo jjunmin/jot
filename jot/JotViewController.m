@@ -17,13 +17,11 @@
 @interface JotViewController () <UIGestureRecognizerDelegate, JotTextEditViewDelegate, JotDrawingContainerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
-@property (nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
-@property (nonatomic, strong) UIRotationGestureRecognizer *rotationRecognizer;
-@property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+//@property (nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
+//@property (nonatomic, strong) UIRotationGestureRecognizer *rotationRecognizer;
+//@property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 @property (nonatomic, strong, readwrite) JotDrawingContainer *drawingContainer;
 @property (nonatomic, strong) JotDrawView *drawView;
-@property (nonatomic, strong) JotTextEditView *textEditView;
-@property (nonatomic, strong) JotTextView *textView;
 
 @end
 
@@ -55,14 +53,14 @@
         _initialTextInsets = self.textView.initialTextInsets;
         _state = JotViewStateDefault;
         
-        _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesture:)];
-        self.pinchRecognizer.delegate = self;
+   //     _pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesture:)];
+   //     self.pinchRecognizer.delegate = self;
         
-        _rotationRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesture:)];
-        self.rotationRecognizer.delegate = self;
+   //     _rotationRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchOrRotateGesture:)];
+   //     self.rotationRecognizer.delegate = self;
         
-        _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-        self.panRecognizer.delegate = self;
+  //      _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+  //      self.panRecognizer.delegate = self;
         
         _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         self.tapRecognizer.delegate = self;
@@ -104,10 +102,10 @@
         make.edges.equalTo(self.view);
     }];
     
-    [self.drawingContainer addGestureRecognizer:self.tapRecognizer];
-    [self.drawingContainer addGestureRecognizer:self.panRecognizer];
-    [self.drawingContainer addGestureRecognizer:self.rotationRecognizer];
-    [self.drawingContainer addGestureRecognizer:self.pinchRecognizer];
+ //   [self.textView.textLabel addGestureRecognizer:self.tapRecognizer];
+ //   [self.textView.textLabel addGestureRecognizer:self.panRecognizer];
+ //   [self.textView.textLabel addGestureRecognizer:self.rotationRecognizer];
+  //  [self.textView.textLabel addGestureRecognizer:self.pinchRecognizer];
 }
 
 #pragma mark - Properties
@@ -126,10 +124,10 @@
         }
         
         self.drawingContainer.multipleTouchEnabled =
-        self.tapRecognizer.enabled =
-        self.panRecognizer.enabled =
-        self.pinchRecognizer.enabled =
-        self.rotationRecognizer.enabled = (state == JotViewStateText);
+        self.tapRecognizer.enabled = (state == JotViewStateText);
+    //    self.panRecognizer.enabled =
+    //    self.pinchRecognizer.enabled =
+    //    self.rotationRecognizer.enabled = (state == JotViewStateText);
     }
 }
 
@@ -319,6 +317,7 @@
     }
 }
 
+/*
 - (void)handlePanGesture:(UIGestureRecognizer *)recognizer
 {
     [self.textView handlePanGesture:recognizer];
@@ -328,6 +327,7 @@
 {
     [self.textView handlePinchOrRotateGesture:recognizer];
 }
+ */
 
 #pragma mark - JotDrawingContainer Delegate
 

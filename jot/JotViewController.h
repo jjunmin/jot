@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "JottextView.h"
+#import "JotTextEditView.h"
+
 
 /**
  *  The possible states of the JotViewController
@@ -71,6 +74,9 @@ typedef NS_ENUM(NSUInteger, JotViewState){
  */
 @property (nonatomic, assign) JotViewState state;
 
+
+@property (nonatomic, strong) JotTextEditView *textEditView;
+
 /**
  *  The font of the text displayed in the JotTextView and JotTextEditView.
  *
@@ -96,6 +102,8 @@ typedef NS_ENUM(NSUInteger, JotViewState){
  *  The text string the JotTextView and JotTextEditView are displaying.
  */
 @property (nonatomic, strong) NSString *textString;
+
+@property (nonatomic, strong) JotTextView *textView;
 
 /**
  *  The alignment of the text displayed in the JotTextView, which only
