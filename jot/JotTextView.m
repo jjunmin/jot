@@ -21,7 +21,6 @@
 @property (nonatomic, assign) CGRect labelFrame;
 
 
-@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchRecognizer;
 @property (nonatomic, strong) UIRotationGestureRecognizer *rotationRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
@@ -75,12 +74,10 @@
         _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesturee:)];
         self.panRecognizer.delegate = self;
         
-        _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesturee:)];
-        self.tapRecognizer.delegate = self;
+     
         
         
         
-        [self.textLabel addGestureRecognizer:self.tapRecognizer];
         [self.textLabel addGestureRecognizer:self.panRecognizer];
         [self.textLabel addGestureRecognizer:self.rotationRecognizer];
         [self.textLabel addGestureRecognizer:self.pinchRecognizer];
@@ -282,10 +279,6 @@
 
 #pragma mark - Gestures
 
-- (void)handleTapGesturee:(UIGestureRecognizer *)recognizer
-{
-    //여기서 택스트에딧 띄우기. 외부에서 탭할때는 새로 입력 열기
-}
 
 - (void)handlePanGesturee:(UIGestureRecognizer *)recognizer
 {
