@@ -11,3 +11,5 @@
 #import "JottextView.h"
 
 #import "JotTextEditView.h"
+
+#import "JotDrawView.h"
