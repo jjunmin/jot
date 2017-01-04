@@ -21,7 +21,7 @@
 //@property (nonatomic, strong) UIRotationGestureRecognizer *rotationRecognizer;
 //@property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 @property (nonatomic, strong, readwrite) JotDrawingContainer *drawingContainer;
-@property (nonatomic, strong) JotDrawView *drawView;
+
 
 @end
 

@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "JottextView.h"
 #import "JotTextEditView.h"
+#import "JotDrawView.h"
 
 
 /**
@@ -123,6 +124,7 @@ typedef NS_ENUM(NSUInteger, JotViewState){
  */
 @property (nonatomic, assign) CGFloat drawingStrokeWidth;
 
+@property (nonatomic, strong) JotDrawView *drawView;
 /**
  *  Set to YES if you want the stroke width for drawing to be constant,
  *  NO if the stroke width should vary depending on drawing speed.
