@@ -12,12 +12,6 @@
 
 #pragma mark - Touches
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
-    
-    [self.delegate jotDrawingContainerTouchBeganAtPoint:[[touches anyObject] locationInView:self]];
-}
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {

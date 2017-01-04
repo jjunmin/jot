@@ -29,8 +29,6 @@
  *  @param touchPoint The point in this view's coordinate
  *  system where the touch began.
  */
-- (void)jotDrawingContainerTouchBeganAtPoint:(CGPoint)touchPoint;
-
 /**
  *  Tells the delegate to handle a touchesMoved event.
  *
